@@ -99,26 +99,26 @@
   "lein runで呼ばれるメインプログラムです"
   [& args]
   (println "starting server ...")
-  (reset! server (run-server (site #'all-routes) {:port 3003})))
+  (reset! server (run-server (site #'all-routes) {:port 8080})))
 
 (comment 
   ;; それぞれのサービスを起動、停止します。
   ;; wscat -c urlでクライアントのテストができます。
   ;; (例) wscat -c ws://localhost:8080
 
-  (reset! server (run-server #'app {:port 3003}))
+  (reset! server (run-server #'app {:port 8080}))
   ;;wscat -c ws://localhost:8080
   (stop-server)
 
-  (reset! server (run-server #'ws-handler {:port 3003}))
+  (reset! server (run-server #'ws-handler {:port 8080}))
   ;;wscat -c ws://localhost:8080
   (stop-server)
 
-  (reset! server (run-server #'streaming-handler {:port 3003}))
+  (reset! server (run-server #'streaming-handler {:port 8080}))
   ;;wscat -c ws://localhost:8080
   (stop-server)
 
-  (reset! server (run-server #'long-poll-handler {:port 3003}))
+  (reset! server (run-server #'long-poll-handler {:port 8080}))
   ;;wscat -c ws://localhost:8080
 
 (someevent "test")
@@ -126,7 +126,7 @@
 
   (stop-server)
 
-  (reset! run-server (site #'all-routes) {:port 3003})
+  (reset! run-server (site #'all-routes) {:port 8080})
   ;;wscat -c ws://localhost:8080/ws
   ;;wscat -c ws://localhost:8080/stream
   ;;wscat -c ws://localhost:8080/poll
